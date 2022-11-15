@@ -1,0 +1,25 @@
+<mat-spinner *ngIf="loading && serverReady" style="margin-left: 20px; margin-top: 20px;"></mat-spinner>
+<div *ngIf="serverReady && !loading" style="padding: 20px;">
+    <h1>Welcome</h1>
+    <!--<p th:text="${message}" th:if="${message ne null}"></p>-->
+    <form action="#" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" (change)="selectFile($event)"/>
+        <button type="button" (click)="upload()">Register</button>
+    </form>
+    <table border="1" style="margin-top: 10px;">
+        <tr>
+            <th>Date</th>
+            <th>Amount</th>
+            <th>Type</th>
+            <th>Action</th>
+        </tr>
+        <tr *ngFor="let payment of payments" >
+            <td>{{payment.date}}</td>
+            <td>{{payment.amount}}</td>
+            <td>{{payment.billType}}</td>
+            <td>
+                <button type="submit" (click)="delete(payment.id)">Delete</button>
+            </td>
+        </tr>
+    </table>
+</div>
