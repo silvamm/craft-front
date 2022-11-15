@@ -4,9 +4,9 @@
 
 export const environment = {
   production: false,
-  statusServerUrl: "",
-  intanceIds: [""]
-
+  lambdaStatusServerUrl: "",
+  intanceIds: ["", ""],
+  coreId: ""
 };
 
 /*
