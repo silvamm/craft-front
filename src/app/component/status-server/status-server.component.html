@@ -1,0 +1,32 @@
+<mat-spinner *ngIf="loading" style="margin-left: 20px;"></mat-spinner>
+
+<div class="status-server" [hidden]="loading">
+    <div style="margin-bottom: 5px;">
+        <button style="margin-right: 5px;" type="button" (click)="startAllServers()">Start All</button>
+        <button style="margin-right: 5px;" type="button" (click)="stopAllServers()">Stop All</button>
+        <button type="button" (click)="refresh()">Refresh</button>
+    </div>
+    <table border="1">
+        <tr>
+            <th>Instance</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+        <tr *ngFor="let statusServer of statusServers" >
+            <td>{{statusServer.keyName | uppercase }}</td>
+            <td>
+                {{statusServer.state.name | uppercase }}
+                <span *ngIf="statusServer.state.code == 16">&#9989;</span>
+                <span *ngIf="statusServer.state.code == 80 || statusServer.state.code == 64">&#9940;</span>
+                <span *ngIf="statusServer.state.code == 0">&#8987;</span>
+            </td>
+            <td>
+                <div class="button-status-server">
+                    <button style="margin-right: 5px;" type="button" (click)="startServer(statusServer.instanceId)">Start</button>
+                    <button type="button" (click)="stopServer(statusServer.instanceId)">Stop</button>
+                </div>
+            </td>
+        </tr>
+    </table>
+    
+</div>
